@@ -1,0 +1,577 @@
+@import "mixin";
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  font-family: $font-family;
+  font-size: $font-size-base;
+  color: $color-text-base;
+  background-color: $fill-body;
+  min-height: 100vh;
+  width: 100%;
+}
+
+img {
+  color: transparent;
+  font-size: 0;
+  vertical-align: middle;
+  border: 0px;
+  -ms-interpolation-mode: bicubic;
+}
+
+*[contenteditable] {
+  -webkit-user-select: auto !important;
+}
+
+// Reset fonts for relevant elements
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+input, textarea {
+  border: none;
+  background-color: #fff;
+}
+
+button {
+  outline: none;
+}
+
+ul,
+ol {
+  display: list-item;
+  list-style: none;
+}
+
+// Remove the clear button of a text input control in IE10+
+input::-ms-clear, input::-ms-reveal {
+  display: none;
+}
+
+input[type=checkbox], input[type=radio] {
+  margin: 4px 0 0;
+  line-height: normal;
+  @include square75(30px);
+}
+
+textarea {
+  display: block;
+  resize: none;
+  width: 100%;
+}
+
+*:focus {
+  outline: none;
+}
+
+a {
+  background: transparent;
+  text-decoration: none;
+  outline: none;
+  color: $color-text-base;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus {
+    text-decoration: none;
+  }
+
+  &:active {
+    text-decoration: none;
+  }
+
+  &:visited {
+    text-decoration: none;
+  }
+}
+
+// Headers
+h1, h2, h3, h4, h5, h6 {
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+}
+
+label {
+  display: inline-block;
+  max-width: 100%;
+  font-weight: normal;
+  color: inherit;
+}
+
+//左浮动
+.pull-left {
+  @extend %pull-left;
+}
+
+//右浮动
+.pull-right {
+  @extend %pull-right;
+}
+
+//清除浮动
+.clearfix {
+  @extend %clearfix;
+}
+
+//超出显示...
+.ellipsis {
+  @extend %ellipsis;
+}
+
+//没有数据
+.no-data {
+  width: 100%;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  padding: rem75(15px) 0;
+  background-color: $fill-base;
+}
+
+.noDataBg {
+  display: block;
+  height: rem75(700px);
+  text-align: center;
+  background: url(../assets/no_data.png) no-repeat center center;
+  background-color: $fill-body;
+  background-size: rem75(254px) rem75(405px);
+}
+
+//容器
+.container_top {
+  padding-top: rem64(88px);
+  min-height: 100vh;
+}
+
+.container_bottom {
+  padding-bottom: rem64(112px);
+  min-height: 100vh;
+}
+
+.container_both {
+  padding-top: rem64(88px);
+  padding-bottom: rem64(112px);
+  min-height: 100vh;
+}
+
+//iconfont
+.webapp {
+  color: $color-text-reverse;
+}
+
+//高亮
+.highlight {
+  color: $color-highlight;
+}
+
+//表单
+.form-group {
+  font-size: 14px;
+  border-radius: rem75(10px);
+  overflow: hidden;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  line-height: rem75(50px);
+  padding: rem75(19px) rem75(20px);
+  font-size: 14px;
+  color: $color-text-thirdly;
+  background-color: #fff;
+  @extend %border-base;
+}
+
+.checkbox, .radio {
+  label {
+    width: auto;
+    @include ht-lineHt75(90px);
+  }
+}
+
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
+  @include square75(35px);
+  vertical-align: middle;
+}
+
+//水平表单
+.form-horizontal {
+  .form-control {
+    display: inline-block;
+    width: 70%;
+  }
+
+  .control-label {
+    padding-top: rem75(7px);
+    margin-bottom: 0;
+    text-align: right;
+  }
+
+  .checkbox, radio {
+    padding-top: 7px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+//过渡动画
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+}
+
+//向左滑动
+.slide-left-enter-active, .slide-left-leave-active {
+  transition: all 0.5s;
+}
+
+.slide-left-enter, .slide-left-leave-active {
+  opacity: 0;
+}
+
+.slide-left-enter {
+  transform: translateX(10rem);
+}
+
+.slide-left-leave-active {
+  transform: translateX(-10rem);
+}
+
+//向右滑动
+.slide-right-enter-active, .slide-right-leave-active {
+  transition: all 0.5s;
+}
+
+.slide-right-enter, .slide-right-leave-active {
+  opacity: 0;
+}
+.slide-right-enter {
+  transform: translateX(-10rem);
+}
+
+.slide-right-leave-active {
+  transform: translateX(10rem);
+}
+
+//向下滑动
+.slide-bottom-enter-active, .slide-bottom-leave-active {
+  transition: all 0.5s;
+}
+
+.slide-bottom-enter, .slide-bottom-leave-to {
+  transform: translateY(100vh);
+  opacity: 0;
+}
+
+//向上滑动
+.slide-top-enter-active, .slide-top-leave-active {
+  transition: all 0.5s;
+}
+
+.slide-top-enter, .slide-top-leave-to {
+  transform: translateY(100vh);
+  opacity: 0;
+}
+
+.app {
+  //按钮
+  .page-button-group, .page-button-group > * {
+    margin-bottom: rem75(30px);
+  }
+
+  .mint-button {
+    height: rem75(90px);
+    font-size: 14px;
+    @include borderRadius75(8px);
+  }
+
+  .mint-button--normal, .mint-button--small {
+    padding: 0 rem75(24px);
+  }
+
+  .mint-button--small {
+    font-size: 12px;
+    height: rem75(70px);
+  }
+
+  .mint-button--large {
+    @include borderRadius75(12px);
+  }
+
+  .mint-button--primary {
+    color: #fff;
+    background-color: $brand-primary;
+  }
+
+  .mint-button--primary.is-plain {
+    border: 1px solid $brand-primary;
+    background-color: transparent;
+    color: $brand-primary;
+  }
+
+  //MessageBox
+  .mint-msgbox {
+    font-size: 16px;
+  }
+
+  .mint-msgbox-title {
+    font-size: 16px;
+    line-height: rem75(120px);
+  }
+
+  .mint-msgbox-btns {
+    @include ht-lineHt75(92px);
+  }
+
+  .mint-msgbox-content {
+    padding: rem75(10px) rem75(70px) rem75(60px);
+  }
+
+  //toast
+  .mint-toast {
+    .mint-toast-text {
+      font-size: 14px;
+    }
+
+    &.is-placebottom {
+      bottom: rem75(115px);
+    }
+  }
+
+  //loading
+  .mint-indicator-mask {
+    opacity: 0;
+    background: #000;
+  }
+
+  //轮播
+  .mint-swipe-indicator {
+    &.is-active {
+      background: $brand-primary;
+      opacity: 0.9;
+    }
+  }
+
+  //cell
+  .mint-cell {
+    @include ht-lineHt75(88px);
+
+    .mint-cell-wrapper {
+      line-height: rem75(88px);
+      font-size: 14px;
+      background: none;
+      border-bottom: 1px solid $border-color-base;
+    }
+
+    img {
+      @include square75(26px);
+    }
+
+    .mint-cell-text {
+      margin-left: rem75(30px);
+    }
+
+    .mint-cell-title {
+      @include flex(flex-start);
+      align-items: center;
+    }
+
+    .mint-cell-allow-right::after {
+      @include square75(15px);
+    }
+
+    &:last-child {
+      background: none;
+      border-bottom: none;
+      background-color: #fff;
+
+      .mint-cell-wrapper {
+        background: none;
+        border-bottom: none;
+        background-color: #fff;
+      }
+    }
+  }
+
+  //.mint-navbar 选项卡
+  .mint-navbar {
+    .mint-tab-item {
+      padding: rem75(25px) 0;
+      margin: 0 rem75(30px);
+      font-size: 14px;
+
+      &.is-selected {
+        border-bottom: rem75(6px) solid $brand-primary;
+        color: $brand-primary;
+        margin-bottom: rem75(6px);
+      }
+    }
+  }
+
+  .mint-tab-item-label {
+    font-size: 14px;
+  }
+
+  .mint-tab-item-icon {
+    width: rem75(48px);
+    height: rem75(48px);
+    margin: 0 auto rem75(5px);
+  }
+
+  //radio
+  .mint-radio-input:checked + .mint-radio-core {
+    background-color: $brand-primary;
+    border-color: $brand-primary;
+  }
+
+  .mint-radio-label {
+    margin-left: rem75(6px);
+  }
+
+  //checkbox
+  .mint-checkbox-input:checked + .mint-checkbox-core {
+    background-color: $brand-primary;
+    border-color: $brand-primary;
+  }
+
+  .mint-checklist-label {
+    margin-left: rem75(6px);
+  }
+}
+
+// 竖线
+.primary_line {
+  position: absolute;
+  display: inline-block;
+  width: rem75(6px);
+  height: rem75(28px);
+  line-height: rem75(60px);
+  margin-right: rem75(20px);
+  background-color: $brand-primary;
+}
+
+//搜索
+.search {
+  width: rem75(39px);
+}
+
+//遮罩层
+.mb-model {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  background-color: $fill-mask;
+}
+
+//table 表格
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.table {
+  margin-bottom: rem75(36px);
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+  border-top: 1px solid $border-color-light;
+}
+
+//排行榜前三背景
+.rank_bg_one {
+  background: url(../assets/gold.png) no-repeat center center;
+  background-size: rem75(33px), rem75(35px);
+}
+
+.rank_bg_two {
+  background: url(../assets/silver.png) no-repeat center center;
+  background-size: rem75(33px), rem75(35px);
+}
+
+.rank_bg_three {
+  background: url(../assets/copper.png) no-repeat center center;
+  background-size: rem75(33px), rem75(35px);
+}
+
+/*筛选*/
+.filter_layer {
+  position: fixed;
+  top: rem75(92px);
+  left: 0;
+  right: 0;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .4);
+  z-index: 50;
+}
+
+.filter_list {
+  position: absolute;
+  max-height: 0;
+  overflow: hidden;
+  left: 0;
+  right: 0;
+  top: rem75(92px);
+  z-index: 100;
+  background-color: $fill-base;
+  font-size: 15px;
+  transition: max-height ease 0.5s;
+
+  &.show {
+    max-height: rem75(430px);
+  }
+}
+
+.filter_item {
+  @include ht-lineHt75(86px);
+  padding: 0 rem75(30px);
+
+  span {
+    margin-left: rem75(30px);
+  }
+
+  img {
+    width: rem75(28px);
+  }
+
+  .webapp-selected {
+    @extend %pull-right;
+    font-size: 25px;
+    color: $brand-primary;
+  }
+
+  &.filter_title {
+    background-color: $fill-grey;
+    padding: 0;
+    color: $color-text-thirdly;
+
+    span {
+      margin-left: rem75(30px);
+    }
+  }
+
+  &.active {
+    color: $brand-primary;
+  }
+}
+
+
+
+

@@ -1,0 +1,276 @@
+/**
+ * mixin
+ */
+$hd: 1px; // 基本单位
+
+// 色彩
+// ---
+// 全局/品牌色
+/*$brand-primary: #ec4747;
+$brand-primary-tap: #E74545;*/
+$brand-primary: #b01f24;
+$brand-primary-tap: #b01f24;
+$brand-success: #01dd99;
+$brand-info: #26a2ff;
+$brand-warning: #ffc600;
+$brand-error: #f4333c;
+$brand-important: #ff5b05; // 用于小红点
+$brand-wait: #ec4747;
+
+// 边框色
+$border-color-base: #e8e8e8;
+$border-color-light: #f0f0f0;
+// 文字色
+$color-text-base: #333; // 基本
+$color-text-reverse: #fff; // 白色
+$color-text-secondary: #666; // 辅助色
+$color-text-thirdly: #999; // 辅助色
+$color-text-placeholder: #bbb; // 文本框提示
+$color-text-disabled: #bbb; // 失效
+$color-text-caption: #888; // 辅助描述
+$color-link: $brand-primary; // 链接
+$color-highlight: $brand-primary; // 高亮
+// 背景色
+$fill-base: #fff; // 组件默认背景
+$fill-body: #ecf1f4; // 页面背景
+$fill-tap: #ddd; // 组件默认背景 - 按下
+$fill-disabled: #ddd; // 通用失效背景
+$fill-mask: rgba(0, 0, 0, 0.4); // 遮罩背景
+$color-icon-base: #ccc; // 许多小图标的背景，比如一些小圆点，加减号
+$fill-grey: #f7f7f7;
+
+// 透明度
+$opacity-disabled: 0.3; // switch checkbox radio 等组件禁用的透明度
+
+// 字体尺寸
+$font-size-icontext: 10 * $hd;
+$font-size-caption-sm: 12 * $hd;
+$font-size-base: 14 * $hd;
+$font-size-subhead: 15 * $hd;
+$font-size-caption: 16 * $hd;
+$font-size-heading: 17 * $hd;
+
+// 圆角
+$radius-xs: 2 * $hd;
+$radius-sm: 3 * $hd;
+$radius-md: 5 * $hd;
+$radius-lg: 7 * $hd;
+$radius-circle: 50%;
+
+//字体
+$font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+
+//$px为需要转换的字号, 设计图为750
+@function rem75($px) {
+  @return $px / 75px * 1rem;
+}
+
+//$px为需要转换的字号, 设计图为640
+@function rem64($px) {
+  @return $px / 64px * 1rem;
+}
+
+@mixin wh75($width,$height) {
+  width: rem75($width);
+  height: rem75($height);
+}
+
+@mixin wh64($width,$height) {
+  width: rem64($width);
+  height: rem64($height);
+}
+
+@mixin square75($size) {
+  @include wh75($size, $size);
+}
+
+@mixin square64($size) {
+  @include wh64($size, $size);
+}
+
+@mixin ht-lineHt75($height) {
+  height: rem75($height);
+  line-height: rem75($height);
+}
+
+@mixin ht-lineHt64($height) {
+  height: rem64($height);
+  line-height: rem64($height);
+}
+
+// 边框圆角
+@mixin borderRadius75($radius:$radius-md) {
+  -webkit-border-radius: rem75($radius);
+  -moz-border-radius: rem75($radius);
+  -ms-border-radius: rem75($radius);
+  -o-border-radius: rem75($radius);
+  border-radius: rem75($radius);
+}
+
+// 边框圆角
+@mixin borderRadius64($radius:$radius-md) {
+  -webkit-border-radius: rem64($radius);
+  -moz-border-radius: rem64($radius);
+  -ms-border-radius: rem64($radius);
+  -o-border-radius: rem64($radius);
+  border-radius: rem64($radius);
+}
+
+//圆角
+@mixin border-top-radius75($radius) {
+  border-top-right-radius: rem75($radius);
+  border-top-left-radius: rem75($radius);
+}
+
+@mixin border-top-radius64($radius) {
+  border-top-right-radius: rem64($radius);
+  border-top-left-radius: rem64($radius);
+}
+
+@mixin border-right-radius75($radius) {
+  border-bottom-right-radius: rem75($radius);
+  border-top-right-radius: rem75($radius);
+}
+
+@mixin border-right-radius64($radius) {
+  border-bottom-right-radius: rem64($radius);
+  border-top-right-radius: rem64($radius);
+}
+
+@mixin border-bottom-radius75($radius) {
+  border-bottom-right-radius: rem75($radius);
+  border-bottom-left-radius: rem75($radius);
+}
+
+@mixin border-bottom-radius64($radius) {
+  border-bottom-right-radius: rem64($radius);
+  border-bottom-left-radius: rem64($radius);
+}
+
+@mixin border-left-radius75($radius) {
+  border-bottom-left-radius: rem75($radius);
+  border-top-left-radius: rem75($radius);
+}
+
+@mixin border-left-radius64($radius) {
+  border-bottom-left-radius: rem64($radius);
+  border-top-left-radius: rem64($radius);
+}
+
+@mixin opacity($opacity:1) {
+  opacity: $opacity;
+  -moz-opacity: $opacity;
+  -khtml-opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+/*font-dpr*/
+@mixin font-dpr($font-size:12px) {
+  font-size: $font-size;
+  [data-dpr="2"] & {
+    font-size: $font-size*2;
+  }
+  [data-dpr="3"] & {
+    font-size: $font-size * 3;
+  }
+}
+
+//过渡
+@mixin transition($pro:all,$dur:0.3s,$fn:ease-in,$delay:0s) {
+  -webkit-transition-property: $pro;
+  -moz-transition-property: $pro;
+  -o-transition-property: $pro;
+  transition-property: $pro;
+
+  -webkit-transition-duration: $dur;
+  -moz-transition-duration: $dur;
+  -o-transition-duration: $dur;
+  transition-duration: $dur;
+
+  -webkit-transition-timing-function: $fn;
+  -moz-transition-timing-function: $fn;
+  -o-transition-timing-function: $fn;
+  transition-timing-function: $fn;
+
+  -webkit-transition-delay: $delay;
+  -moz-transition-delay: $delay;
+  -o-transition-delay: $delay;
+  transition-delay: $delay;
+}
+
+//flex 布局和 子元素 对其方式
+@mixin flex($type: space-between) {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: $type;
+}
+
+//超出第n行显示...
+@mixin ellipsis_two($line_num:2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line_num;
+}
+
+/*圆点*/
+@mixin dot75($size:10px,$color:$brand-primary) {
+  display: inline-block;
+  @include square75($size);
+  @include borderRadius75($size/2);
+  background-color: $color;
+  vertical-align: middle;
+}
+
+@mixin dot64($size:10px,$color:$brand-primary) {
+  display: inline-block;
+  @include square64($size);
+  @include borderRadius64($size/2);
+  background-color: $color;
+  vertical-align: middle;
+}
+
+
+// 左浮动
+%pull-left {
+  float: left !important;
+}
+
+// 右浮动
+%pull-right {
+  float: right !important;
+}
+
+// 清除浮动
+%clearfix {
+  zoom: 1;
+
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+    visibility: hidden;
+    font-size: 0;
+    height: 0;
+  }
+}
+
+/*超出显示...*/
+%ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+//base边框
+%border-base {
+  border: 1px solid $border-color-base;
+}
+
+
